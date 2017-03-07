@@ -1,5 +1,5 @@
 
-<!-- <script>$("#tinderslide").jTinder();</script> -->
+<!-- <script></script> -->
   <div data-role="main" class="ui-content">
     <!-- start padding container -->
     <div class="wrap">
@@ -13,8 +13,13 @@
         <div id="tinderslide">
           <ul>
             <% if @restaurants %>
-              <%@restaurants.each do |restaurant| %>
+              <%@restaurants.each_with_index do |restaurant, i| %>
                 <%= render partial: 'pane', locals:{restaurant: restaurant} ,layout: false  %>
+                <% if i == @restaurants.length - 1 %>
+                  <script type="text/javascript">
+                    $("#tinderslide").jTinder();
+                  </script>
+                <% end %>
               <% end %>
               <% end %>
           </ul>
@@ -37,7 +42,7 @@
     <div data-role="navbar" id="navbar-id">
         <ul>
           <li>
-            <form method="get" action="/users/<%=1%>/favorites">
+            <form method="get" action="/favorites">
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
               <input class="fav-button" type="submit" name="Favorites">
             </form>
@@ -51,7 +56,7 @@
           </li>
 
           <li>
-            <form method="post" action="/sessions/<%=1 %>">
+            <form method="post" action="/sessions/<%=current_user.id %>">
                 <%= hidden_field_tag "_method", "delete"  %>
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                 <input class="logout-button" type="submit" name="Logout">

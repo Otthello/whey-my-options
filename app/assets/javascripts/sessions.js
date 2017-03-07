@@ -23,14 +23,14 @@ var ajaxFacebookLogin = function(fbUID){
       type: method,
       data: {id: uID},
       success: function() {
-        $(".wrapper").append("<a href='/restaurants'>"+"----------->"+"</a>")
-        console.log('Success!')
+        $("#login-button").replaceWith("<a id='home' href='/restaurants'><h1>Come on in!</h1></a>");
         },
-      // error: function() {
-      //   console.log('Error!');
-      // }
+        error: function() {
+          console.log('Error!');
+        }
     })
 }
+
 
 var updateStatusCallback = function(){
   var uID = FB.getUserID();

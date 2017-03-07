@@ -9,8 +9,9 @@ var facebookSetup = function(){
         version: 'v2.7'
       });     
       FB.getLoginStatus(updateStatusCallback);
-  });
+  })
 };
+
 var ajaxFacebookLogin = function(fbUID){
     var uID    = fbUID;
     var url    =  '/sessions' + "?&authenticity_token=" + encodeURIComponent(RAILS_AUTH_TOKEN);
@@ -22,11 +23,12 @@ var ajaxFacebookLogin = function(fbUID){
       type: method,
       data: {id: uID},
       success: function() {
+        $(".wrapper").append("<a href='/restaurants'>"+"----------->"+"</a>")
         console.log('Success!')
         },
-      error: function() {
-        console.log('Error!');
-      }
+      // error: function() {
+      //   console.log('Error!');
+      // }
     })
 }
 

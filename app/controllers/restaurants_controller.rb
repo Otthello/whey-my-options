@@ -15,8 +15,10 @@ class RestaurantsController < ApplicationController
 
       render partial: 'index', layout: false, locals: {restaurants: near_restaurants} , status: :ok
     else
+      puts '*'*50
+      puts "restuarantes set"
+      puts '*'*50
       @restaurants = Restaurant.all
-
     end
   end
 

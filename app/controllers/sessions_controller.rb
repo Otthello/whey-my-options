@@ -7,6 +7,9 @@ class SessionsController < ApplicationController
   def create
     if request.xhr?
       set_user(login_deetz)
+      puts '*'*50
+      puts "user set"
+      puts '*'*50
       redirect_to restaurants_path
     else
       render nothing: true, status: :bad_request
